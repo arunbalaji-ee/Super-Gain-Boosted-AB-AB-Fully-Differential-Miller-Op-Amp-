@@ -89,7 +89,6 @@ N -1340 230 -1340 250 {lab=#net8}
 N -1340 -240 -1340 -150 {lab=#net9}
 N -1300 -270 -1300 -120 {lab=VBP_L}
 N -1340 -90 -1340 -60 {lab=#net10}
-N -1340 0 -1340 30 {lab=#net11}
 N -1340 90 -1340 140 {lab=OUTP}
 N -1360 110 -1340 110 {lab=OUTP}
 N -1440 -120 -1340 -120 {lab=#net9}
@@ -115,10 +114,6 @@ N 330 380 330 470 {lab=VBN_L}
 N -920 -200 -810 -200 {lab=p}
 N -810 -200 -810 -50 {lab=p}
 N -810 -50 -580 -50 {lab=p}
-N 310 160 330 160 {lab=VCN2_L}
-N 310 50 330 50 {lab=VCP2_L}
-N 320 -40 330 -40 {lab=VCP1_L}
-N 310 270 330 270 {lab=VCN1_L}
 N -1300 -30 -1280 -30 {lab=VCP1_L}
 N -1300 60 -1280 60 {lab=VCP2_L}
 N -1300 170 -1280 170 {lab=VCN2_L}
@@ -126,17 +121,34 @@ N -1300 280 -1290 280 {lab=VCN1_L}
 N -1340 420 -310 420 {lab=VSS}
 N -310 410 -310 420 {lab=VSS}
 N -1300 390 -400 390 {lab=VBN_L}
-N -1030 -130 -920 -130 {lab=VBP_L}
-N -1030 -280 -1030 -130 {lab=VBP_L}
+N -1030 -130 -920 -130 {lab=VDD}
 N -50 -140 70 -140 {lab=VBP_L}
+N -1600 120 -1520 120 {lab=OUTP}
+N -1520 120 -1360 120 {lab=OUTP}
+N -1360 110 -1360 120 {lab=OUTP}
+N -1300 -30 330 -30 {lab=VCP1_L}
+N 330 -40 330 -30 {lab=VCP1_L}
+N -1300 60 330 60 {lab=VCP2_L}
+N 330 50 330 60 {lab=VCP2_L}
+N 330 160 330 170 {lab=VCN2_L}
+N -1300 280 330 280 {lab=VCN1_L}
+N 330 270 330 280 {lab=VCN1_L}
+N -1030 -230 -610 -230 {lab=VDD}
+N -1030 -230 -1030 -130 {lab=VDD}
+N -1300 170 -1300 190 {lab=VCN2_L}
+N -1300 190 330 190 {lab=VCN2_L}
+N 330 170 330 190 {lab=VCN2_L}
 N 70 -280 70 -140 {lab=VBP_L}
-N -740 -130 -730 -130 {lab=VBP_L}
-N -730 -150 -730 -130 {lab=VBP_L}
+N -1340 0 -1340 30 {lab=#net11}
+N -1340 90 -1310 90 {lab=OUTP}
+N -1600 240 -1600 440 {lab=VSS}
+N -1600 440 -340 440 {lab=VSS}
+N -340 230 -340 440 {lab=VSS}
 C {sky130_fd_pr/nfet_01v8.sym} -380 170 0 0 {name=M_BNA2
 W=10
 L=0.27
 nf=1 
-mult=1
+mult=2
 ad="expr('int((@nf + 1)/2) * @W / @nf * 0.29')"
 pd="expr('2*int((@nf + 1)/2) * (@W / @nf + 0.29)')"
 as="expr('int((@nf + 2)/2) * @W / @nf * 0.29')"
@@ -211,14 +223,8 @@ C {ipin.sym} -730 -150 0 0 {name=p9 lab=VBP_L}
 C {ipin.sym} -620 -20 0 0 {name=p10 lab=VREF_X1
 }
 C {lab_pin.sym} -550 -90 0 0 {name=p2 sig_type=std_logic lab=p}
-C {isource.sym} -210 -30 0 0 {name=I0 value=1m}
 C {ipin.sym} -90 -140 0 0 {name=p7 lab=INN
 }
-C {ipin.sym} 390 100 0 1 {name=p11 lab=OUTN}
-C {ipin.sym} 320 -40 2 1 {name=p12 lab=VCP1_L}
-C {ipin.sym} 310 50 0 0 {name=p13 lab=VCP2_L}
-C {ipin.sym} 310 270 0 0 {name=p14 lab=VCN1_L}
-C {ipin.sym} 310 160 0 0 {name=p15 lab=VCN2_L}
 C {sky130_fd_pr/pfet_01v8.sym} -70 -140 0 0 {name=M_aux1
 W=10
 L=0.27
@@ -318,7 +324,6 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {ipin.sym} -880 -130 0 1 {name=p16 lab=INP}
-C {ipin.sym} -1360 110 0 0 {name=p17 lab=OUTP}
 C {ipin.sym} -1280 -30 2 0 {name=p18 lab=VCP1_L}
 C {ipin.sym} -1280 60 0 1 {name=p19 lab=VCP2_L}
 C {ipin.sym} -1290 280 0 1 {name=p20 lab=VCN1_L}
@@ -421,6 +426,14 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {vsource.sym} -740 -100 0 0 {name=V8 value=0.0 savecurrent=false}
-C {gnd.sym} -740 -70 0 0 {name=l6 lab=0}
-C {gnd.sym} -210 0 0 0 {name=l9 lab=0}
+C {sky130_fd_pr/cap_mim_m3_1.sym} -1600 210 0 0 {name=Cauxn model=cap_mim_m3_1 W=5.48 L=5.48 MF=1 spiceprefix=X}
+C {sky130_fd_pr/res_generic_po.sym} -1600 150 0 0 {name=Rauxn
+W=1
+L=375
+model=res_generic_po
+spiceprefix=X
+mult=1}
+C {opin.sym} -1310 90 0 0 {name=p4 lab=OUTP
+}
+C {opin.sym} 390 100 0 0 {name=p6 lab=OUTN
+}
